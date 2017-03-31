@@ -5,20 +5,21 @@ var rp = require('request-promise');
 
 var app = express();
 
-app.use(bodyParser.json())
-app.get('/', home)
-app.post('/', postRoute)
+app.use(bodyParser.json());
+app.get('/', home);
+app.post('/', postRoute);
 
 
 app.listen(port, listen);
 
 function home(req, res) {
-  console.log('Hello!')
+  res.send('Hello!');
+
 }
 
 function postRoute(req, res) {
-  console.log(req.body)
-  req.send('Done Parsing!')
+  console.log(req.body);
+  res.send('Done Parsing!');
 }
 
 
