@@ -3,8 +3,9 @@ var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var rp = require('request-promise');
 
-var app = express();
 
+var app = express();
+app.disable('X-Powered-By');
 app.use(bodyParser.json());
 app.get('/', home);
 app.post('/', postRoute);
@@ -18,8 +19,8 @@ function home(req, res) {
 }
 
 function postRoute(req, res) {
-  console.log(req.body);
-  res.send('Done Parsing!');
+  var phrase = req.body.phrase.replace(/e/ig, '3').replace(/a/ig, 4).replace(/i/ig, 1);
+  res.send(phrase);
 }
 
 
