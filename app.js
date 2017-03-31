@@ -1,16 +1,27 @@
 var express = require('express');
-var port = process.env.PORT || 30000;
+var port = process.env.PORT || 3000;
 var bodyParser = require('body-parser');
 var rp = require('request-promise');
 
 var app = express();
 
+app.use(bodyParser.json())
+app.get('/', home)
+app.post('/', postRoute)
 
 
-app.listen(port, listenHandler);
+app.listen(port, listen);
+
+function home(req, res) {
+  console.log('Hello!')
+}
+
+function postRoute(req, res) {
+  console.log(req.body)
+  req.send('Done Parsing!')
+}
 
 
-
-function listenHandler() {
+function listen() {
   console.log("listening on ", port);
 }
